@@ -1,0 +1,19 @@
+{
+  "name": "rpg_campus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akakhaleesi/HTML5Gaming.git"
+  },
+  "author": "akakhaleesi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akakhaleesi/HTML5Gaming/issues"
+  },
+  "homepage": "https://github.com/akakhaleesi/HTML5Gaming#readme"
+}
