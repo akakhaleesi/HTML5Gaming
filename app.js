@@ -52,6 +52,8 @@ let bubble;
 let bubble_talk = 0;
 let message;
 
+let move_audio=0;
+
 let showDebug = false;
 
 function preload(){
@@ -70,16 +72,22 @@ function preload(){
   this.load.image("bubble", "./assets/bubble.png");
   this.load.image("inventory", "./assets/inventory.png");
 
-  this.load.audio('bg_audio', 'assets/yesterbreeze.mp3', {
-        instances: -1
-    });
+  this.load.audio('bg_audio', 'assets/yesterbreeze.mp3');
+  this.load.audio('opla', 'assets/opla.mp3');
+  this.load.audio('move', 'assets/move.mp3');
+
+  this.load.audio('steam', 'assets/steam.mp3');
+  this.load.audio('pirate', 'assets/pirate.mp3');
+  this.load.audio('piratef', 'assets/piratef.mp3');
+  this.load.audio('jap', 'assets/jap.mp3');
+  this.load.audio('girl', 'assets/girl.mp3');
 }
 
 function create(){
   thisGame = this;
   // audio
-  bg_audio = this.sound.add('bg_audio');
-  bg_audio.play('bg_audio');
+  this.sound.add('bg_audio');
+  this.sound.play('bg_audio');
   // set map and layers
   const map = this.make.tilemap({ key: "map" });
   const tileset = map.addTilesetImage("tiles_pack", "tiles");
@@ -262,7 +270,7 @@ function create(){
   this.physics.add.collider(player, lettuce, pick, null, this);
   this.physics.add.collider(player, knowledge, pick, null, this);
   // player / rock
-  this.physics.add.collider(player, rock);
+  this.physics.add.collider(player, rock, move, null, this);
   // rock / layer
   this.physics.add.collider(rock, rockLayer);
   // player / pnj
@@ -448,7 +456,6 @@ function update(){
 }
 
 function show_inventory(){
-  console.log(inventory);
   if(click_inv==0){
     click_inv = 1;
     inventory_img = thisGame.add.sprite(500, 725, 'bubble');
@@ -478,6 +485,15 @@ function show_inventory(){
         items.destroy();
       });
     }
+  }
+}
+
+function move(){
+  if(move_audio==0){
+    // audio
+    this.sound.add('move');
+    this.sound.play('move');
+    move_audio++;
   }
 }
 
@@ -558,6 +574,28 @@ function talk(player, pnj){
       }
 
       if(bubble_talk==0){
+        // audio
+        if(pnj.name=='japanese'){
+          this.sound.add('jap');
+          this.sound.play('jap');
+        }
+        else if(pnj.name=='steampunk'){
+          this.sound.add('steam');
+          this.sound.play('steam');
+        }
+        else if(pnj.name=='pirate_f'){
+          this.sound.add('piratef');
+          this.sound.play('piratef', {volume: 4});
+        }
+        else if(pnj.name=='pirate_m'){
+          this.sound.add('pirate');
+          this.sound.play('pirate');
+        }
+        else if(pnj.name=='girl'){
+          this.sound.add('girl');
+          this.sound.play('girl');
+        }
+
         player.body.moves = false;
 
         bubble_talk = 1;
@@ -591,6 +629,9 @@ function talk(player, pnj){
 }
 
 function pick(player, obj){
+  // audio
+  this.sound.add('opla');
+  this.sound.play('opla');
   if(inventory.includes(obj.name) == false){
     inventory.push(obj.name);
     inventory.push(obj.key);
@@ -600,7 +641,6 @@ function pick(player, obj){
 
 function arrayRemove(array, value) {
   return array.filter(function(ele){
-    console.log(inventory);
     return ele != value;
   });
 }
