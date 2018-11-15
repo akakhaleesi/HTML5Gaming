@@ -87,7 +87,7 @@ function create(){
   thisGame = this;
   // audio
   this.sound.add('bg_audio');
-  this.sound.play('bg_audio');
+  this.sound.play('bg_audio', {volume: 0.5});
   // set map and layers
   const map = this.make.tilemap({ key: "map" });
   const tileset = map.addTilesetImage("tiles_pack", "tiles");
