@@ -1,14 +1,56 @@
 <!doctype html>
 
+<style>
+  #game-container {
+    width:100%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10px;
+  }
+  #start {
+    font-family: 'Roboto Mono', monospace;
+    width: 80%;
+    cursor: pointer;
+    font-size: 40px;
+    text-align: center;
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: 100px;
+    background-color: #232323;
+    color: #fff;
+    border: 1px solid;
+    border-radius: 4px;
+  }
+  #start:hover {
+    border-color: #232323;
+    color: #232323;
+    background-color: #fff;
+  }
+  #footer {
+    font-family: 'Roboto Mono', monospace;
+    width: 80%;
+    font-size: 25px;
+    text-align: center;
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: 20px;
+    color: #232323;
+  }
+</style>
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
   <script src="phaser.js" type="text/javascript"></script>
   <script src="script.js" type="text/javascript"></script>
 </head>
 
 <body>
-  <div id="start">Nouvelle partie</div>
+  <div id="start">NOUVELLE PARTIE</div>
+  <div id="footer">
+    PHASER 3 | <a href="https://opengameart.org/content/2d-rpg-lpc-compatible-tilessprites" target="_blank">ASSETS</a> | HOME MADE SOUNDS | <a href="https://github.com/akakhaleesi/HTML5Gaming" target="_blank">GITHUB</a>
+  </div>
   <div id="game-container"></div>
 </body>
 

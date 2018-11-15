@@ -147,10 +147,10 @@ function create(){
   knowledge.key = 2;
   rock = this.physics.add.sprite(rock_block.x, rock_block.y, 'rock');
   // inventory
-  inventory_img = this.add.sprite(50, 50, 'inventory');
+  inventory_img = this.add.sprite(60, 60, 'inventory');
   inventory_img.setScrollFactor(0);
   inventory_img.setDepth(30);
-  inventory_img.setDisplaySize(70,70);
+  inventory_img.setDisplaySize(100,100);
   inventory_img.setInteractive();
   inventory_img.on('pointerdown', () => show_inventory());
 
