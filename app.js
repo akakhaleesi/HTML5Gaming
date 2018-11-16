@@ -442,11 +442,11 @@ function update(){
       girl_move = 'top';
     },5500)
   }
-  if(player.quest1==1){
+  if(player.quest1==2){
     girl.body.moves = true;
     this.physics.moveToObject(girl, player, 0, 1000);
   }
-  else if(player.quest1==2){
+  else if(player.quest1==3){
     girl.body.moves = false;
   }
 
@@ -509,13 +509,14 @@ function talk(player, pnj){
         text = 'Mireille\n\nHi sweetie, you should talk to the scientist up there, he seems... upset!';
       }
       else if(pnj.name=='steampunk'){
-        if(inventory.includes('Dr. Pepito\'s book') == false && player.quest2!=2){
+        if(inventory.includes('Dr. Pepito\'s book') == false && player.quest2!=3){
           text = 'Dr. Pepito\n\nOh shit shit, a pirate stole my book! You! Mercenary.. go and take it for me!\nHe must be at the beach.';
+          player.quest2 = 1;
         }
         else {
-          if(player.quest2==1 ){
+          if(player.quest2==2 ){
             text = 'Dr. Pepito\n\nMy book!! You saved my life! Let me give you a Super Potion..\nOk ok move on!';
-            player.quest2 = 2;
+            player.quest2 = 3;
 
             potion = thisGame.physics.add.sprite(0, 0, 'items');
             potion.name = 'potion';
@@ -538,18 +539,22 @@ function talk(player, pnj){
         }
       }
       else if(pnj.name=='pirate_f'){
-        if(player.quest1==true){
+        if(!player.quest1 || player.quest1==1) {
+          player.quest1 = 1;
+          text = 'Monica\n\nOh my god! my little sister Kiki just ran straight into the forest!\ni can\'t go there.. A Big Burger block the way!\nI am vegan so i won\'t touch it.. can you help me to bring her back?';
+        }
+        else if(player.quest1==2){
           text = 'Monica\n\nYou are a good person.';
-          player.quest1 = 2;
+          player.quest1 = 3;
         }
         else {
-          text = 'Monica\n\nOh my god! my little sister Kiki just ran straight into the forest!\ni can\'t go there.. A Big Burger block the way!\nI am vegan so i won\'t touch it.. can you help me to bring her back?';
+          text = 'Monica\n\nHi dude!';
         }
       }
       else if(pnj.name=='pirate_m'){
-        if(player.quest2!=true){
-          text = 'Leonard\n\nWho do you think i am?!!\n.. Ok ok you can take it, i don\'t like to read to be fair, take those two books.';
-          player.quest2 = 1;
+        if(player.quest2==1){
+          text = 'Leonard\n\nWho do you think i am?!!\n.. Ok ok you can take it, i don\'t like to read to be fair, take those two books.\n( check your inventory )';
+          player.quest2 = 2;
 
           pepito_book = thisGame.physics.add.sprite(0, 0, 'items');
           book = thisGame.physics.add.sprite(0, 0, 'items');
@@ -569,8 +574,13 @@ function talk(player, pnj){
         }
       }
       else if(pnj.name=='girl'){
-        text = 'Kiki\n\nLalala, i am freeeee LALALAA.. WHAT AGAIN ?!! NOOO i don\'t want to go home!!!';
-        player.quest1 = 1;
+        if(player.quest1==1){
+          text = 'Kiki\n\nLalala, i am freeeee LALALAA.. WHAT AGAIN ?!! NOOO i don\'t want to go home!!!';
+          player.quest1 = 2;
+        }
+        else {
+          text = 'Kiki\n\nMy name is Kiki. i wish i was a wich..';
+        }
       }
 
       if(bubble_talk==0){
